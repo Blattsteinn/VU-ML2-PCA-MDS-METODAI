@@ -16,11 +16,11 @@ METRICS = {                      # stulpelis quality() rezultate -> užrašas a�
 
 COLORS = {"Metrinis": "#ffd166", "Nemetrinis": "#8ecae6"}
 
-TEXT_COLOR = "white"      # tamsiai skaidrei; šviesiai – "black"
+TEXT_COLOR = "black"      # tamsiai skaidrei; šviesiai – "black"
 TRANSPARENT = True        # fonas permatomas, kad matytųsi skaidrės spalva
 
 STYLE = {
-    "font.size": 16,
+    "font.size": 18,
     "axes.labelsize": 18,
     "xtick.labelsize": 18,
     "ytick.labelsize": 14,
@@ -32,8 +32,6 @@ STYLE = {
     "axes.edgecolor": TEXT_COLOR,
     "xtick.color": TEXT_COLOR,
     "ytick.color": TEXT_COLOR,
-    "font.weight": "bold",
-    "axes.labelweight": "bold",
 }
 
 # ---- Projekcijos: tie patys nustatymai kaip ataskaitos skripte ----

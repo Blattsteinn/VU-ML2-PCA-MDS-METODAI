@@ -26,30 +26,28 @@ plt.rcParams.update({
 
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.33, 7.5))
+fig, ax = plt.subplots(figsize=(13.33, 7.5))
 
-# Kairė: lokalūs ir eiliškumo matai
-ax1.plot(D, T, "o-", color=COLORS["T"], lw=2.5, ms=8, label="T")
-ax1.plot(D, C, "s-", color=COLORS["C"], lw=2.5, ms=8, label="C")
-ax1.plot(D, RHO, "^-", color=COLORS["rho"], lw=2.5, ms=8, label="rho")
-ax1.set_ylim(0.85, 1.01)
-ax1.set_title("T, C ir rho")
-ax1.set_ylabel("Reikšmė")
-ax1.legend(loc="lower right", frameon=False)
+# Visi matai viename grafike
+ax.plot(D, T, "o-", color=COLORS["T"], lw=2.5, ms=8, label="T")
+ax.plot(D, C, "s-", color=COLORS["C"], lw=2.5, ms=8, label="C")
+ax.plot(D, RHO, "^-", color=COLORS["rho"], lw=2.5, ms=8, label="rho")
+ax.plot(D, STRESS, "D-", color=COLORS["stress"], lw=2.5, ms=8, label="Stress-1")
 
-# Dešinė: atstumų iškraipymas
-ax2.plot(D, STRESS, "o-", color=COLORS["stress"], lw=2.5, ms=8)
+# Stress-1 reikšmių užrašai
 for d, s in zip(D, STRESS):
-    ax2.annotate(f"{s:.3f}", (d, s), textcoords="offset points",
-                 xytext=(8, 8), fontsize=15, color=COLORS["stress"])
-ax2.set_ylim(0, 0.26)
-ax2.set_title("Stress-1")
+    ax.annotate(f"{s:.3f}", (d, s), textcoords="offset points",
+                xytext=(8, 8), fontsize=15, color=COLORS["stress"])
 
-for ax in (ax1, ax2):
-    ax.set_xticks(D)
-    ax.set_xlim(1.5, 10.5)
-    ax.set_xlabel("Dimensija d")
-    ax.grid(axis="y", alpha=0.3)
+ax.set_ylim(0, 1.02)
+ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
+ax.set_xticks(D)
+ax.set_xlim(1.5, 10.5)
+ax.set_xlabel("Dimensija d")
+ax.set_ylabel("Reikšmė")
+ax.set_title("T, C, rho ir Stress-1")
+ax.grid(axis="y", alpha=0.3)
+ax.legend(loc="center right", frameon=False)
 
 fig.tight_layout()
 fig.savefig(IMAGES_DIR / OUT_FILE, dpi=300, bbox_inches="tight")
